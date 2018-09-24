@@ -2,10 +2,7 @@ package com.tw.beijing.advice_of_aop;
 
 import com.tw.beijing.advice_of_aop.bean.User;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -30,6 +27,12 @@ public class AspectConfig {
     @AfterThrowing(pointcut = "execution(* *userAfterThrowing())", throwing = "ex")
     public User afterThrowing(IllegalArgumentException ex) {
         System.out.println(ex.getMessage());
+        return new User(1);
+    }
+
+    @After(value = "execution(* *afterFinally())")
+    public User afterFinally() {
+        System.out.println("after finally advice");
         return new User(1);
     }
 }

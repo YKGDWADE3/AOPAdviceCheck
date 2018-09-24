@@ -29,7 +29,7 @@ class AspectConfigTest {
 
     @Test
     void should_invoke_method_after_returning() {
-        User user1 = user.userAfterReturning();
+        User user1 = user.afterReturning();
         assertEquals(2, GlobalInfo.MSG_LIST.size());
         assertEquals(User.USER_AFTER_RETURNING_JOIN_POINT, GlobalInfo.MSG_LIST.get(0));
         assertEquals(1, user1.getAge());
@@ -37,6 +37,12 @@ class AspectConfigTest {
 
     @Test
     void should_invoke_method_after_throwing() {
-        user.userAfterThrowing();
+        user.afterThrowing();
+    }
+
+    @Test
+    void should_invoke_method_after_finally() {
+        User user = this.user.afterFinally();
+        assertEquals(2, user.getAge());
     }
 }

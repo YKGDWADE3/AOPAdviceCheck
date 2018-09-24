@@ -21,7 +21,7 @@ public class User {
         GlobalInfo.MSG_LIST.add("user set id");
     }
 
-    public User userAfterReturning() {
+    public User afterReturning() {
         GlobalInfo.MSG_LIST.add(USER_AFTER_RETURNING_JOIN_POINT);
         User user = new User();
         user.setAge(1);
@@ -36,8 +36,12 @@ public class User {
         return age;
     }
 
-    public User userAfterThrowing() {
+    public User afterThrowing() {
         GlobalInfo.MSG_LIST.add(USER_AFTER_THROWING_JOIN_POINT);
         throw new IllegalArgumentException("user argument illegal");
+    }
+
+    public User afterFinally() {
+        return new User(2);
     }
 }
