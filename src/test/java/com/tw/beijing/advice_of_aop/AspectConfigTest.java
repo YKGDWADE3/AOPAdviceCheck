@@ -26,4 +26,11 @@ class AspectConfigTest {
         assertEquals(2, GlobalInfo.MSG_LIST.size());
         assertEquals("before join point", GlobalInfo.MSG_LIST.get(0));
     }
+
+    @Test
+    void should_invoke_method_after() {
+        user.userAfter();
+        assertEquals(2, GlobalInfo.MSG_LIST.size());
+        assertEquals("user after advice", GlobalInfo.MSG_LIST.get(0));
+    }
 }
