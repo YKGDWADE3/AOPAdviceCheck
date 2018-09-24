@@ -24,14 +24,19 @@ class AspectConfigTest {
     void should_invoke_method_before() {
         user.setUserId();
         assertEquals(2, GlobalInfo.MSG_LIST.size());
-        assertEquals("before join point", GlobalInfo.MSG_LIST.get(0));
+        assertEquals(AspectConfig.BEFORE_ADVICE, GlobalInfo.MSG_LIST.get(0));
     }
 
     @Test
-    void should_invoke_method_after() {
-        User user1 = user.userAfter();
+    void should_invoke_method_after_returning() {
+        User user1 = user.userAfterReturning();
         assertEquals(2, GlobalInfo.MSG_LIST.size());
-        assertEquals("user after advice", GlobalInfo.MSG_LIST.get(0));
+        assertEquals(User.USER_AFTER_RETURNING_JOIN_POINT, GlobalInfo.MSG_LIST.get(0));
         assertEquals(1, user1.getAge());
+    }
+
+    @Test
+    void should_invoke_method_after_throwing() {
+        user.userAfterThrowing();
     }
 }
