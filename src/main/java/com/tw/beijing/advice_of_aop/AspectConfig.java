@@ -1,5 +1,6 @@
 package com.tw.beijing.advice_of_aop;
 
+import com.tw.beijing.advice_of_aop.bean.User;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -16,7 +17,8 @@ public class AspectConfig {
     }
 
     @AfterReturning(pointcut = "execution(* *userAfter())", returning = "user")
-    public void afterReturning(Object user) {
+    public User afterReturning(Object user) {
         GlobalInfo.MSG_LIST.add("after returning join point " + user.getClass());
+        return new User();
     }
 }

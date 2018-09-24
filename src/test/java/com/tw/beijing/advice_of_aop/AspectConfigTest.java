@@ -29,8 +29,9 @@ class AspectConfigTest {
 
     @Test
     void should_invoke_method_after() {
-        user.userAfter();
+        User user1 = user.userAfter();
         assertEquals(2, GlobalInfo.MSG_LIST.size());
         assertEquals("user after advice", GlobalInfo.MSG_LIST.get(0));
+        assertEquals(1, user1.getAge());
     }
 }
