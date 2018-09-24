@@ -44,4 +44,8 @@ public class User {
     public User afterFinally() {
         return new User(2);
     }
+
+    public User around() {
+        return new User(1);
+    }
 }

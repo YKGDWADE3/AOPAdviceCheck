@@ -45,4 +45,10 @@ class AspectConfigTest {
         User user = this.user.afterFinally();
         assertEquals(2, user.getAge());
     }
+
+    @Test
+    void should_invoke_method_around() {
+        User around = user.around();
+        assertEquals(2, around.getAge());
+    }
 }

@@ -2,6 +2,7 @@ package com.tw.beijing.advice_of_aop;
 
 import com.tw.beijing.advice_of_aop.bean.User;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -34,5 +35,12 @@ public class AspectConfig {
     public User afterFinally() {
         System.out.println("after finally advice");
         return new User(1);
+    }
+
+    @Around(value = "execution(* *around())")
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        GlobalInfo.MSG_LIST.add("before proceed around");
+        joinPoint.proceed();
+        return new User(2);
     }
 }
